@@ -1,0 +1,27 @@
+
+
+
+import os
+import math 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+from statsmodels.sandbox.regression.predstd import wls_prediction_std
+from scipy import stats
+import math
+import seaborn as sns
+import matplotlib.ticker as mtick
+from matplotlib.ticker import FuncFormatter
+
+
+df = pd.read_csv("C://Users//user//Desktop//Book1_t.csv",header=None,names=['items1','percentage'])
+print(df)
+print(df.dtypes)
+df['percentage'] = 100*(df['percentage'].str.rstrip('%').astype('float') / 100.0)
+print(df)
+def to_percent(temp, position):
+   return '%1.0f'%(1*temp) + '%'
+plt.gca().yaxis.set_major_formatter(FuncFormatter(to_percent))
+plt.bar(df['items1'],df['percentage'])
+plt.show()
